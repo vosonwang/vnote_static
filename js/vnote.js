@@ -3,7 +3,6 @@
  */
 
 
-
 /*不显示进度环*/
 NProgress.configure({showSpinner: false});
 
@@ -18,22 +17,35 @@ toastr.options = {
 
 moment.locale('zh-cn');
 
+
 let vaste = new Vue({
     el: '#note',
     data: {
         note: "",
         record: {},
         shortId: location.href.split("/", 4)[3],
-        notes: []
+        notes: [],
+        checkedNote: [],
+        allCheck: false
+    },
+    watch: {
+
+        allCheck: function (val, oldVal) {
+            let _self = this;
+            if (val) {
+                this.notes.forEach(function (note) {
+                    _self.checkedNote.push(note.id);
+                });
+            } else {
+                this.checkedNote = [];
+            }
+        }
     },
     mounted: function () {
         this.$nextTick(function () {
-
             this.findByShortID();
-
         });
         this.getAllNotes();
-
     },
     computed: {
         formatNote: function () {
@@ -43,9 +55,9 @@ let vaste = new Vue({
                     if (a.updatetime !== null) {
                         a.updatetime = moment(a.updatetime).fromNow();
                     }
-                    a.createtime=moment(a.createtime).format("MMM Do YYYY");
+                    a.createtime = moment(a.createtime).format("MMM Do YYYY");
                     if (a.note !== null && a.note.length > 60) {
-                        a.note = a.note.slice(0, 60)+"...";
+                        a.note = a.note.slice(0, 60) + "...";
                     }
                     return a;
                 })
@@ -69,7 +81,7 @@ let vaste = new Vue({
                         NProgress.start();
                     },
                     success: function (data) {
-                        if (data !== null && data !=='') {
+                        if (data !== null && data !== '') {
                             _self.record = data;
                             _self.note = data.note;
                         } else {
@@ -97,7 +109,7 @@ let vaste = new Vue({
                     NProgress.start();
                 },
                 success: function (data) {
-                    if (data !== null && data !=='') {
+                    if (data !== null && data !== '') {
                         window.location.href = "/" + data;
                     } else {
                         toastr.error("新建笔记失败！");
@@ -145,7 +157,7 @@ let vaste = new Vue({
         //保存 1.记录已存在，update数据 2.新记录，create数据
         save: function () {
             let _self = this;
-            if(_self.note!==""){
+            if (_self.note !== "") {
                 $.ajax({
                     type: "post",
                     url: "/notes",
@@ -154,10 +166,10 @@ let vaste = new Vue({
                         NProgress.start();
                     },
                     success: function (data) {
-                        if (data !== null && data !=='') {
+                        if (data !== null && data !== '') {
                             toastr.success("保存成功！");
                             _self.record = data;
-                        }else {
+                        } else {
                             toastr.error("保存失败！");
                         }
                     },
@@ -202,9 +214,11 @@ let vaste = new Vue({
                     NProgress.done();
                 }
             })
-        }
+        },
 
+        //TODO 批量删除
     }
 
 });
+
 

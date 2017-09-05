@@ -1,5 +1,9 @@
-.right10{
+.right10 {
     margin-right: 10px;
+}
+
+.top10 {
+    margin-top: 10px;
 }
 
 .float-button {
@@ -8,6 +12,48 @@
     right: 15px;
 }
 
-.black{
-    color:black;
+/*控制a标签链接颜色*/
+div.float-button > a {
+    color: black;
+}
+
+div.float-button > a:hover {
+    color: #337ab7;
+}
+
+/*checkbox 优化样式*/
+.demo--label {
+    display: inline-block;
+    margin-bottom: 0
+}
+
+.demo--radio {
+    display: none
+}
+
+.demo--radioInput {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 100%;
+    display: inline-block;
+    height: 16px;
+    margin-right: 10px;
+    margin-top: -1px;
+    vertical-align: middle;
+    width: 16px;
+    line-height: 1
+}
+
+.demo--radio:checked + .demo--radioInput:after {
+    background-color: #57ad68;
+    border-radius: 100%;
+    content: "";
+    display: inline-block;
+    height: 12px;
+    margin: 1px;
+    width: 12px
+}
+
+.demo--checkbox.demo--radioInput, .demo--radio:checked + .demo--checkbox.demo--radioInput:after {
+    border-radius: 0
 }

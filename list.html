@@ -6,7 +6,6 @@
 
     <link rel="shortcut icon" href="/favicon.png" type="image/png">
 
-
     <!--支持移动设备-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -19,7 +18,6 @@
     <link href="//cdn.bootcss.com/simditor/2.3.6/styles/simditor.min.css" rel="stylesheet">
 
     <link href="css/vnote.min.css" rel="stylesheet">
-
 
     <!--js-->
     <script src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
@@ -43,28 +41,35 @@
 </head>
 <body>
 <div class="container" id="note">
-    <div class="row">
+    <div class="row top10">
         <div class="col-md-12">
-            <table class="table table-hover" >
+            <table class="table table-hover">
                 <thead>
                 <tr>
+                    <th><label class="demo--label"><input class="demo--radio" type="checkbox" v-model="allCheck"
+                                                          title="选择所有"><span
+                            class="demo--checkbox demo--radioInput"></span></label></th>
                     <th>编号</th>
                     <th>修改时间</th>
-                    <th>内容</th>
                     <th>创建时间</th>
+                    <th>内容</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="a in formatNote">
+                    <td><label class="demo--label"><input class="demo--radio" type="checkbox" v-model="checkedNote"
+                                                          title="选中"
+                                                          :value="a.id">
+                        <span class="demo--checkbox demo--radioInput"></span></label></td>
                     <td>{{a.shortID}}</td>
                     <td>{{a.updatetime}}</td>
-                    <td class="td7"><a :href="'/'+a.shortID">{{a.note}}</a></td>
                     <td>{{a.createtime}}</td>
+                    <td><a :href="'/'+a.shortID">{{a.note}}</a></td>
                 </tr>
                 </tbody>
             </table>
             <div class="float-button">
-                <a class="black" href="javascript:void(0)" @click="create"><i class="fa fa-plus" aria-hidden="true" ></i></a>
+                <a href="javascript:void(0)" @click="create"><i class="fa fa-plus" aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
@@ -73,6 +78,5 @@
 
 <script src="js/vnote.js"></script>
 <script src="js/common.js"></script>
-
 </body>
 </html>
