@@ -1,0 +1,61 @@
+.top75 {
+    margin-top: 75px;
+}
+
+.top5 {
+    margin-top: 5px;
+}
+
+.top10{
+    margin-top: 10px;
+}
+
+.right10{
+    margin-right: 10px;
+}
+
+a {
+    color: black
+}
+
+a:hover {
+    color: #1687e8;
+    text-decoration: none;
+}
+
+.url {
+    color: #a1a1a1;
+}
+
+.navbar {
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom-color: #d1cdcd;
+}
+
+.anchorjs-link {
+    font-family: anchorjs-icons;
+    font-size: 1.5em;
+    margin-left: -1em;
+    position: absolute;
+    padding-right: 0;
+    top: 0.1em;
+    color: #8D8D8D;
+}
+
+.anchorjs-link:focus, :hover > .anchorjs-link:hover {
+    text-decoration: none;
+}
+
+.icon {
+    color: grey;
+    text-decoration: none;
+}
+
+.favorite {
+    background-image: url("/img/star.png");
+    background-repeat: no-repeat;
+    position: relative;
+}
+

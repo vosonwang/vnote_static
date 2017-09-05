@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>vnote-在线记事本</title>
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+
+    <!--支持移动设备-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--css-->
+    <link href="//cdn.bootcss.com/tether/1.4.0/css/tether-theme-arrows-dark.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/simditor/2.3.6/styles/simditor.min.css" rel="stylesheet">
+
+
+    <link href="css/index.min.css" rel="stylesheet">
+
+    <!--js-->
+    <script src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/vue/2.2.4/vue.js"></script>
+
+    <!--信息提示插件
+    http://thevectorlab.net/flatlab/toastr.html
+    -->
+    <script src="//cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
+    <!--数据集操作函数-->
+    <script src="//cdn.bootcss.com/lodash.js/4.17.4/lodash.min.js"></script>
+
+    <!--加载进度条-->
+    <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+    <script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+
+
+    <script src="//cdn.bootcss.com/moment.js/2.17.1/moment.min.js"></script>
+    <script src="//cdn.bootcss.com/moment.js/2.17.1/locale/zh-cn.js"></script>
+
+
+</head>
+<body>
+<div id="note">
+
+
+<div class="container" >
+    <div class="row top10">
+        <div class="col-md-12">
+            <form role="form">
+                <div class="form-group">
+                    <textarea id="editor" class="form-control" rows="3" style="height: 50rem" v-model="note"
+                              title="欢迎使用在线备忘录。它就像一个word，可以在线保存文本。通过浏览器地址栏上的短网址（形如voson.me/1234），你可以在有网络的地方，用任意浏览器查看你之前创建或者朋友分享的文本。"
+                              placeholder="欢迎使用在线备忘录。它就像一个word，可以在线保存文本。通过浏览器地址栏上的短网址（形如voson.me/1234），你可以在有网络的地方，用任意浏览器查看你之前创建或者朋友分享的文本。"
+                              autofocus>
+
+                    </textarea>
+                </div>
+
+            </form>
+            <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target=".bs-example-modal-lg" @click="getAllNotes">列表</button>
+            <button type="button" class="btn btn-default pull-right right10"  @click="deleteNote">删除</button>
+            <button class="btn btn-default pull-right right10" @click="save">保存</button>
+            <button class="btn btn-default pull-right right10" @click="create">新建</button>
+
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>修改时间</th>
+                                            <th>代号</th>
+                                            <th>内容</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr v-for="(note,index) in formatNote">
+                                            <td>{{index+1}}</td>
+                                            <td>{{note.updatetime}}</td>
+                                            <td><a :href="'/'+note.shortID">{{note.shortID}}</a></td>
+                                            <td>{{note.note}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+</div>
+<!--自定义js-->
+<script src="js/vnote.js"></script>
+<script src="js/common.js"></script>
+
+</body>
+</html>
