@@ -8,18 +8,10 @@
 
 .float-button {
     position: absolute;
-    top: 10px;
+    top: 0;
     right: 15px;
 }
 
-/*控制a标签链接颜色*/
-div.float-button > a {
-    color: black;
-}
-
-div.float-button > a:hover {
-    color: #337ab7;
-}
 
 /*checkbox 优化样式*/
 .demo--label {

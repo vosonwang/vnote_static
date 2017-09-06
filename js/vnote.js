@@ -25,19 +25,18 @@ let vaste = new Vue({
         record: {},
         shortId: location.href.split("/", 4)[3],
         notes: [],
-        checkedNote: [],
+        checkedNotes: [],
         allCheck: false
     },
     watch: {
-
         allCheck: function (val, oldVal) {
             let _self = this;
             if (val) {
                 this.notes.forEach(function (note) {
-                    _self.checkedNote.push(note.id);
+                    _self.checkedNotes.push(note.id);
                 });
             } else {
-                this.checkedNote = [];
+                this.checkedNotes = [];
             }
         }
     },
@@ -49,9 +48,9 @@ let vaste = new Vue({
     },
     computed: {
         formatNote: function () {
-            let _self = this, key = 'updatetime';
-            if (this.notes.length !== 0) {
-                return bubbleSort(_self.notes, key).filter(function (a) {
+            let _self = this, key = 'updatetime', b = JSON.parse(JSON.stringify(_self.notes));
+            if (b.length !== 0) {
+                return bubbleSort(b, key).filter(function (a) {
                     if (a.updatetime !== null) {
                         a.updatetime = moment(a.updatetime).fromNow();
                     }
@@ -216,7 +215,47 @@ let vaste = new Vue({
             })
         },
 
-        //TODO 批量删除
+
+        deleteNotes: function () {
+            let _self = this;
+            if (this.checkedNotes.length !== 0) {
+                $.ajax({
+                    type: "DELETE",
+                    url: "/notes",
+                    dataType: "json",
+                    contentType: "application/json",
+                    data: JSON.stringify(_self.checkedNotes),
+                    beforeSend: function () {
+                        NProgress.start();
+                    },
+                    success: function (data) {
+                        if (typeof data === 'number') {
+                            if (data === 0) {
+                                toastr.warning("记录不存在！");
+                            } else if (data === _self.checkedNotes.length) {
+                                toastr.success("删除成功！");
+                                _self.getAllNotes();
+                                _self.checkedNotes=[];
+                                _self.allCheck=false;
+                            } else {
+                                toastr.warning("有" + (_self.checkedNotes.length - data) + "未成功删除！");
+                                _self.getAllNotes();
+                            }
+                        } else {
+                            console.log(data);
+                        }
+                    },
+                    error: function (data) {
+                        toastr.error("获取内容失败！");
+                        console.log(data)
+                    },
+                    complete: function () {
+                        NProgress.done();
+                    }
+                })
+            }
+        }
+
     }
 
 });
