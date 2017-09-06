@@ -30,4 +30,14 @@ function removeItem(arr,ids) {
     return a;
 }
 
+/*扩展js数组方法，判断元素是否包含在数组中*/
+Array.prototype.contains = function (obj) {
+    let i = this.length;
+    while (i--) {
+        if (this[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+};
 

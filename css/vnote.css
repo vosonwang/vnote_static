@@ -12,40 +12,25 @@
     right: 15px;
 }
 
-
-/*checkbox 优化样式*/
-.demo--label {
-    display: inline-block;
-    margin-bottom: 0
+/*用图片替换input框后，扩大起点击范围，并且相对图片居中*/
+input[type=checkbox]{
+    margin: 0 1px 0;
+    zoom:110%;
 }
 
-.demo--radio {
-    display: none
+/*checkbox美化*/
+.checkbox-blue.checked {
+    background-position: -34px 0;
 }
 
-.demo--radioInput {
-    background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 100%;
-    display: inline-block;
-    height: 16px;
-    margin-right: 10px;
-    margin-top: -1px;
-    vertical-align: middle;
+.checkbox-blue {
+    margin: 2px;
     width: 16px;
-    line-height: 1
+    height: 16px;
+    background: url(../skins/blue.png) no-repeat;
 }
 
-.demo--radio:checked + .demo--radioInput:after {
-    background-color: #57ad68;
-    border-radius: 100%;
-    content: "";
-    display: inline-block;
-    height: 12px;
-    margin: 1px;
-    width: 12px
-}
-
-.demo--checkbox.demo--radioInput, .demo--radio:checked + .demo--checkbox.demo--radioInput:after {
-    border-radius: 0
+.btn{
+    padding: 4px 10px;
+    border-radius: 0;
 }

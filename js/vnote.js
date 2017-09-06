@@ -3,6 +3,7 @@
  */
 
 
+
 /*不显示进度环*/
 NProgress.configure({showSpinner: false});
 
@@ -54,7 +55,7 @@ let vaste = new Vue({
                     if (a.updatetime !== null) {
                         a.updatetime = moment(a.updatetime).fromNow();
                     }
-                    a.createtime = moment(a.createtime).format("MMM Do YYYY");
+                    a.createtime = moment(a.createtime).format("MMM Do");
                     if (a.note !== null && a.note.length > 60) {
                         a.note = a.note.slice(0, 60) + "...";
                     }
@@ -259,5 +260,9 @@ let vaste = new Vue({
     }
 
 });
+
+
+
+
 
 

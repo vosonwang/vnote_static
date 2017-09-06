@@ -10,12 +10,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--css-->
+
     <link href="//cdn.bootcss.com/tether/1.4.0/css/tether-theme-arrows-dark.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
     <link href="//cdn.bootcss.com/simditor/2.3.6/styles/simditor.min.css" rel="stylesheet">
+
+
 
     <link href="css/vnote.min.css" rel="stylesheet">
 
@@ -34,6 +37,8 @@
 
     <script src="//cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
 
+
+
     <script src="//cdn.bootcss.com/moment.js/2.17.1/moment.min.js"></script>
     <script src="//cdn.bootcss.com/moment.js/2.17.1/locale/zh-cn.js"></script>
 
@@ -45,9 +50,10 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th><label class="demo--label"><input class="demo--radio" type="checkbox" v-model="allCheck"
-                                                          title="选择所有"><span
-                            class="demo--checkbox demo--radioInput"></span></label></th>
+                    <th>
+                        <div class="checkbox-blue" :class="{checked:allCheck}"><input
+                                type="checkbox" v-model="allCheck" style="opacity: 0;" ></div>
+                    </th>
                     <th>编号</th>
                     <th>修改时间</th>
                     <th>创建时间</th>
@@ -56,9 +62,8 @@
                 </thead>
                 <tbody>
                 <tr v-for="a in formatNote">
-                    <td><label class="demo--label"><input class="demo--radio" type="checkbox" v-model="checkedNotes"
-                                                          title="选中" :value="a.id">
-                        <span class="demo--checkbox demo--radioInput"></span></label></td>
+                    <td><div class="checkbox-blue" :class="{'checked':checkedNotes.contains(a.id)}"><input type="checkbox" v-model="checkedNotes" :value="a.id"
+                                                                                              style=" opacity: 0;"></div></td>
                     <td>{{a.shortID}}</td>
                     <td>{{a.updatetime}}</td>
                     <td>{{a.createtime}}</td>
@@ -74,7 +79,9 @@
     </div>
 </div>
 
+
 <script src="js/common.min.js"></script>
 <script src="js/vnote.js"></script>
+
 </body>
 </html>
