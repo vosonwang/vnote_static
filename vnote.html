@@ -56,6 +56,7 @@
                 </div>
 
             </form>
+            <span v-if="row!=null">{{row.length}} 行</span>
             <a type="button" class="btn btn-default pull-right" href="list.html">列表</a>
             <button type="button" class="btn btn-default pull-right right10" @click="deleteNote">删除</button>
             <button class="btn btn-default pull-right right10" @click="save">保存</button>
@@ -69,7 +70,7 @@
 
 <!--自定义js-->
 <script src="js/common.min.js"></script>
-<script src="js/vnote.js"></script>
+<script src="js/vnote.min.js"></script>
 
 </body>
 </html>

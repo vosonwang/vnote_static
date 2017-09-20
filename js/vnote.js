@@ -64,6 +64,10 @@ let vaste = new Vue({
             } else {
                 return null;
             }
+        },
+        /*计算输入内容有多少行*/
+        row:function () {
+            return this.note && _.difference(this.note.split('\n'), ['']);
         }
     },
     methods: {
