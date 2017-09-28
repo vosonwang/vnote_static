@@ -68,6 +68,15 @@ let vaste = new Vue({
         /*计算输入内容有多少行*/
         row:function () {
             return this.note && _.difference(this.note.split('\n'), ['']);
+        },
+        /*计算输入字符个数，包括标点符号*/
+        characters:function () {
+            let a={"length":0,"isClear":false};
+            if (this.note.indexOf('\n') >=0 || this.note.indexOf(' ') >=0){
+                a.isClear=true;
+            }
+            a.length=this.note.length;
+            return a;
         }
     },
     methods: {

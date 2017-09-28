@@ -56,7 +56,9 @@
                 </div>
 
             </form>
-            <span v-if="row!=null">{{row.length}} 行</span>
+            <span v-if="row" class="right10">{{row.length}} 行</span>
+            <span v-if="note">{{characters.length}} 个字（已计入标点符号）</span>
+            <span v-if="characters.isClear && note">含有空格或换行符</span>
             <a type="button" class="btn btn-default pull-right" href="list.html">列表</a>
             <button type="button" class="btn btn-default pull-right right10" @click="deleteNote">删除</button>
             <button class="btn btn-default pull-right right10" @click="save">保存</button>
